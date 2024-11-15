@@ -43,9 +43,11 @@ export class Reports {
     @OneToMany(() => Report_annotations, report_annotations => report_annotations.reports)
     report_annotations: Report_annotations[];
 
-    @OneToMany(() => Report_status_history, report_status_history => report_status_history.reports)
-    report_status_history: Report_status_history[];
+    @OneToOne(() => Report_status_history, report_status_history => report_status_history.reports)
+    @JoinColumn()
+    report_status_history: Report_status_history;
 
-    @OneToMany(() => Audit_log, audit_log => audit_log.reports)
-    audit_log: Audit_log[];
+    @OneToOne(() => Audit_log, audit_log => audit_log.reports)
+    @JoinColumn()
+    audit_log: Audit_log;
 }

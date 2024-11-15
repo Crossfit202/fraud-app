@@ -20,6 +20,6 @@ export class Report_status_history {
     @Column()
     changed_date: Date;
 
-    @ManyToOne(() => Reports, report => report.report_status_history)
-    reports: Reports
+    @OneToOne(() => Reports, report => report.report_status_history)
+    reports: Reports;
 }

@@ -23,7 +23,7 @@ export class Audit_log {
     @Column()
     action_date: Date;
 
-    @ManyToOne(() => Reports, report => report.audit_log)
+    @OneToOne(() => Reports, report => report.audit_log)
     reports: Reports
 
     @ManyToOne(() => Users, user => user.audit_log)
