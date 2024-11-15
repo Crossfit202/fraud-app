@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Param, Body, Put, Delete } from '@nestjs/common';
-import { UsersService } from './users.service'; // Replace with the correct path to your service
-import { Users } from './users'; // Replace with the correct path to your entity
+import { UsersService } from './users.service';
+import { Users } from './users';
 
 @Controller('users')
 export class UsersController {
