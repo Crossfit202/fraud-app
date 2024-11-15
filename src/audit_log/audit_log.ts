@@ -1,7 +1,7 @@
 import { IsNotEmpty, isNotEmpty } from "class-validator";
 import { Reports } from "src/reports/reports";
 import { Users } from "src/users/users";
-import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 
 @Entity()
 export class Audit_log {
@@ -23,8 +23,8 @@ export class Audit_log {
     @Column()
     action_date: Date;
 
-    // @OneToOne(() => Reports)
-    // reports: Reports;
+    @ManyToOne(() => Reports, report => report.audit_log)
+    reports: Reports
 
     @ManyToOne(() => Users, user => user.audit_log)
     users: Users
