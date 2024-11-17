@@ -1,7 +1,7 @@
 import { IsNotEmpty, isNotEmpty } from "class-validator";
 import { Reports } from "src/reports/reports";
 import { Users } from "src/users/users";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 
 @Entity()
 export class Report_annotations {
@@ -18,9 +18,11 @@ export class Report_annotations {
     created_at: Date;
 
     @ManyToOne(() => Reports, report => report.report_annotations)
+    @JoinColumn({ name: "reportKey" })
     reports: Reports;
 
     @ManyToOne(() => Users, user => user.report_annotations)
+    @JoinColumn({ name: "userKey" })
     users: Users
 
 }

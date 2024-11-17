@@ -11,7 +11,6 @@ import { ReportAnnotationsModule } from 'src/report_annotations/report_annotatio
   imports: [
     TypeOrmModule.forFeature([Report_status_history]),
     AuditLogModule,
-    ReportAnnotationsModule,
     ReportStatusHistoryModule,
   ],
   exports: [TypeOrmModule],

@@ -12,7 +12,7 @@ import { ReportStatusHistoryModule } from '../report_status_history/report_statu
   imports: [
     TypeOrmModule.forFeature([Reports]),
     AuditLogModule,
-    ReportAnnotationsModule,
+    forwardRef(() => ReportAnnotationsModule),
     forwardRef(() => UsersModule), // Wrap UsersModule in forwardRef to handle circular dependency
     ReportStatusHistoryModule,
   ],
