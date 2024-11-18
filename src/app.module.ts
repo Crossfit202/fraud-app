@@ -28,9 +28,9 @@ import { UsersService } from './users/users.service';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
-      port: 5433,
+      port: 5432,
       username: 'postgres',
-      password: 'Cro$$57jon',
+      password: 'Fairlawn00!',
       database: 'app',
       entities: [Audit_log, Report_annotations, Report_status_history, Reports, Users],
       synchronize: true // Use only in development; set to false in production

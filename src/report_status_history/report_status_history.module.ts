@@ -10,8 +10,8 @@ import { ReportAnnotationsModule } from 'src/report_annotations/report_annotatio
 @Module({
   imports: [
     TypeOrmModule.forFeature([Report_status_history]),
-    AuditLogModule,
-    ReportStatusHistoryModule,
+    forwardRef(() => AuditLogModule),
+    forwardRef(() => ReportStatusHistoryModule),
   ],
   exports: [TypeOrmModule],
   controllers: [ReportStatusHistoryController],

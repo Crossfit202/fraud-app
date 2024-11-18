@@ -11,7 +11,7 @@ import { ReportStatusHistoryModule } from '../report_status_history/report_statu
 @Module({
   imports: [
     TypeOrmModule.forFeature([Reports]),
-    AuditLogModule,
+    forwardRef(() => AuditLogModule),
     forwardRef(() => ReportAnnotationsModule),
     forwardRef(() => UsersModule), // Wrap UsersModule in forwardRef to handle circular dependency
     ReportStatusHistoryModule,
