@@ -1,10 +1,11 @@
 import { Controller, Get, Post, Param, Body, Put, Delete } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Users } from './users';
+import { Reports } from 'src/reports/reports';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly userService: UsersService) { }
+  constructor(private readonly userService: UsersService) { } // Use "userService"
 
   // POST /users - Create a new user
   @Post()
@@ -34,5 +35,17 @@ export class UsersController {
   @Delete(':id')
   async remove(@Param('id') id: number): Promise<void> {
     return await this.userService.remove(id);
+  }
+
+  // Get all reports assigned to a user
+  @Get(':id/assigned')
+  async getReportsAssignedToUser(@Param('id') id: number): Promise<Reports[]> {
+    return await this.userService.findReportsAssignedToUser(id); // Corrected from usersService to userService
+  }
+
+  // Get all reports created by a user
+  @Get(':id/created')
+  async getReportsCreatedByUser(@Param('id') id: number): Promise<Reports[]> {
+    return await this.userService.findReportsCreatedByUser(id); // Corrected from usersService to userService
   }
 }

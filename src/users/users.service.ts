@@ -2,12 +2,20 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Users } from './users'; // Replace with the correct path to your entity
+import { Audit_log } from 'src/audit_log/audit_log';
+import { Reports } from 'src/reports/reports';
 
 @Injectable()
 export class UsersService {
     constructor(
         @InjectRepository(Users)
         private readonly userRepository: Repository<Users>,
+
+        @InjectRepository(Audit_log)
+        private readonly auditLogRepository: Repository<Audit_log>,
+
+        @InjectRepository(Reports)
+        private readonly reportsRepository: Repository<Reports>,
     ) { }
 
     // CREATE
@@ -42,4 +50,27 @@ export class UsersService {
         const user = await this.findOne(id); // Ensure the user exists
         await this.userRepository.remove(user); // Delete the user from the database
     }
+
+    // GET ALL AUDIT LOGS FOR A USER
+    async findAuditLogsForUser(userId: number): Promise<Audit_log[]> {
+        return await this.auditLogRepository.find({ where: { user_id: userId } });
+    }
+
+    // Method to fetch reports assigned to a user
+    async findReportsAssignedToUser(userId: number): Promise<Reports[]> {
+        return await this.reportsRepository.find({
+            where: { users: { user_id: userId } },
+            relations: ['users'], // Ensures the user relationship is loaded
+        });
+    }
+
+
+    // GET ALL REPORTS CREATED BY A USER
+    async findReportsCreatedByUser(userId: number): Promise<Reports[]> {
+        return await this.reportsRepository.find({
+            where: { created_by: userId },
+            relations: ['users'], // Ensures the user relationship is loaded
+        });
+    }
+
 }

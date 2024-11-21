@@ -37,8 +37,11 @@ export class Reports {
     @Column()
     updated_at: Date;
 
-    @ManyToOne(() => Users, user => user.reports)
+    @ManyToOne(() => Users, (user) => user.reports)
+    @JoinColumn({ name: 'usersUserId' }) // Use exact column name from database
     users: Users;
+
+
 
     @OneToMany(() => Report_annotations, report_annotations => report_annotations.reports)
     report_annotations: Report_annotations[];
