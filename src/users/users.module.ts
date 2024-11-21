@@ -9,8 +9,8 @@ import { ReportAnnotationsModule } from 'src/report_annotations/report_annotatio
 
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Users]), 
-  forwardRef(() => ReportsModule), 
+  imports: [TypeOrmModule.forFeature([Users]),
+  forwardRef(() => ReportsModule),
   forwardRef(() => AuditLogModule),
   forwardRef(() => ReportAnnotationsModule)],
   exports: [TypeOrmModule],

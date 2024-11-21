@@ -2,13 +2,15 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Report_status_history } from './report_status_history';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { Reports } from '../reports/reports'; // Adjust the path based on your project structure
 
 @Injectable()
-
 export class ReportStatusHistoryService {
     constructor(
         @InjectRepository(Report_status_history)
         private readonly reportStatusHistoryRepository: Repository<Report_status_history>,
+        @InjectRepository(Reports)
+        private readonly reportsRepository: Repository<Reports>, // Add repository for Reports
     ) { }
 
     // CREATE
@@ -18,9 +20,13 @@ export class ReportStatusHistoryService {
     }
 
     // READ ALL
+    // Service
     async findAll(): Promise<Report_status_history[]> {
-        return await this.reportStatusHistoryRepository.find();
+        return await this.reportStatusHistoryRepository.find({
+            relations: ['report'], // Load the related report entity
+        });
     }
+
 
     // READ ONE
     async findOne(id: number): Promise<Report_status_history> {
@@ -30,6 +36,14 @@ export class ReportStatusHistoryService {
         }
         return status;
     }
+
+    async findAllByReportId(report_id: number): Promise<Report_status_history[]> {
+        return await this.reportStatusHistoryRepository.find({
+            where: { report: { report_id } }, // Correctly reference the report relationship
+            relations: ['report'], // Load the related report if needed
+        });
+    }
+
 
     // UPDATE
     async update(id: number, data: Partial<Report_status_history>): Promise<Report_status_history> {

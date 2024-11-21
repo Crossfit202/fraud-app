@@ -11,13 +11,11 @@ import { ReportStatusHistoryModule } from '../report_status_history/report_statu
 @Module({
   imports: [
     TypeOrmModule.forFeature([Reports]),
-    forwardRef(() => AuditLogModule),
-    forwardRef(() => ReportAnnotationsModule),
-    forwardRef(() => UsersModule), // Wrap UsersModule in forwardRef to handle circular dependency
-    ReportStatusHistoryModule,
+    forwardRef(() => AuditLogModule), // Resolve circular dependency with forwardRef
+    forwardRef(() => UsersModule),   // Add forwardRef if UsersModule is causing the issue
   ],
-  exports: [TypeOrmModule],
-  controllers: [ReportsController],
   providers: [ReportsService],
+  controllers: [ReportsController],
+  exports: [TypeOrmModule, ReportsService], // Export the ReportsService for use in other modules
 })
 export class ReportsModule { }

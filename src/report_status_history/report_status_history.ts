@@ -1,5 +1,5 @@
 import { IsNotEmpty } from "class-validator";
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Reports } from "src/reports/reports";
 
 @Entity()
@@ -20,7 +20,7 @@ export class Report_status_history {
     @Column()
     changed_date: Date;
 
-    @OneToOne(() => Reports, (report) => report.report_status_history)
-    @JoinColumn({ name: "report_id" }) // Explicitly define the foreign key column
-    reports: Reports;
+    @ManyToOne(() => Reports, (report) => report.status_history, { onDelete: "CASCADE" }) // Many-to-One relationship
+    @JoinColumn({ name: "reportReportId" })
+    report: Reports; // Reference to the associated report
 }

@@ -9,11 +9,11 @@ import { UsersModule } from 'src/users/users.module';
 @Module({
   imports: [
     TypeOrmModule.forFeature([Audit_log]),
-    forwardRef(() => ReportsModule),
-    forwardRef(() => UsersModule),
+    forwardRef(() => ReportsModule), // Resolve circular dependency with forwardRef
   ],
-  exports: [TypeOrmModule],
-  controllers: [AuditLogController],
   providers: [AuditLogService],
+  controllers: [AuditLogController],
+  exports: [TypeOrmModule, AuditLogService],
 })
-export class AuditLogModule {}
+export class AuditLogModule { }
+
