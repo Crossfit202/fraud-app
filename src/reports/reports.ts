@@ -32,6 +32,27 @@ export class Reports {
     created_by: number;
 
     @Column()
+    perpetrator: string;
+
+    @Column()
+    incident_location: string;
+
+    @Column()
+    monetary_damage: string;
+
+    @Column()
+    additional_damage1: boolean;
+
+    @Column()
+    additional_damage2: boolean;
+
+    @Column()
+    ongoing: string;
+
+    @Column()
+    discovery_method: string;
+
+    @Column()
     created_at: Date;
 
     @Column()
