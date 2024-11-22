@@ -29,6 +29,7 @@ export class AuditLogService {
         return annotation;
     }
 
+    // GET ALL AUDIT LOGS MADE BY SPECIFIC USER
     async findAllByUserId(id: number): Promise<Audit_log[]> {
         return await this.auditLogRepository.find({ where: { user_id: id } });
     }

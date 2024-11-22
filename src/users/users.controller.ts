@@ -5,47 +5,47 @@ import { Reports } from 'src/reports/reports';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly userService: UsersService) { } // Use "userService"
+  constructor(private readonly userService: UsersService) { }
 
-  // POST /users - Create a new user
+  // POST 
   @Post()
   async create(@Body() data: Partial<Users>): Promise<Users> {
     return await this.userService.create(data);
   }
 
-  // GET /users - Retrieve all users
+  // GET ALL
   @Get()
   async findAll(): Promise<Users[]> {
     return await this.userService.findAll();
   }
 
-  // GET /users/:id - Retrieve a single user by ID
+  // GET ONE
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<Users> {
     return await this.userService.findOne(id);
   }
 
-  // PUT /users/:id - Update a user by ID
+  // PUT 
   @Put(':id')
   async update(@Param('id') id: number, @Body() data: Partial<Users>): Promise<Users> {
     return await this.userService.update(id, data);
   }
 
-  // DELETE /users/:id - Delete a user by ID
+  // DELETE
   @Delete(':id')
   async remove(@Param('id') id: number): Promise<void> {
     return await this.userService.remove(id);
   }
 
-  // Get all reports assigned to a user
+  // GET ALL REPORTS ASSIGNED TO A USER
   @Get(':id/assigned')
   async getReportsAssignedToUser(@Param('id') id: number): Promise<Reports[]> {
-    return await this.userService.findReportsAssignedToUser(id); // Corrected from usersService to userService
+    return await this.userService.findReportsAssignedToUser(id);
   }
 
-  // Get all reports created by a user
+  // GET ALL REPORTS CREATED BY A USER
   @Get(':id/created')
   async getReportsCreatedByUser(@Param('id') id: number): Promise<Reports[]> {
-    return await this.userService.findReportsCreatedByUser(id); // Corrected from usersService to userService
+    return await this.userService.findReportsCreatedByUser(id);
   }
 }

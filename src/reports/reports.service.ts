@@ -21,11 +21,20 @@ export class ReportsService {
         return await this.reportRepository.find();
     }
 
-    // READ ONE
+    // READ ONE REPORT BY ID
     async findOne(id: number): Promise<Reports> {
         const report = await this.reportRepository.findOne({ where: { report_id: id } });
         if (!report) {
             throw new NotFoundException(`Report with ID ${id} not found`);
+        }
+        return report;
+    }
+
+    // READ ONE REPORT BY TICKET NUMBER
+    async findOneByTicket(id: string): Promise<Reports> {
+        const report = await this.reportRepository.findOne({ where: { ticket_number: id } });
+        if (!report) {
+            throw new NotFoundException(`Report with Ticket Number ${id} not found`);
         }
         return report;
     }

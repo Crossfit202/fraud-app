@@ -30,6 +30,16 @@ export class ReportAnnotationsService {
         return annotation;
     }
 
+    async findAnnotationsByReportId(reportId: number): Promise<Report_annotations[]> {
+        return await this.reportAnnotationsRepository.find({
+            where: {
+                reports: { report_id: reportId }, // Reference the primary key in the `Reports` entity
+            },
+            relations: ['reports'], // Ensure `reports` relation is loaded
+        });
+    }
+
+
     // UPDATE
     async update(id: number, data: Partial<Report_annotations>): Promise<Report_annotations> {
         const annotation = await this.findOne(id);

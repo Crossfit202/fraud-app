@@ -12,25 +12,33 @@ export class ReportAnnotationsController {
     return await this.reportAnnotationsService.create(data);
   }
 
-  // GET /users - Retrieve all users
+  // GET all users
   @Get()
   async findAll(): Promise<Report_annotations[]> {
     return await this.reportAnnotationsService.findAll();
   }
 
-  // GET /users/:id - Retrieve a single user by ID
+  // GET by ID
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<Report_annotations> {
     return await this.reportAnnotationsService.findOne(id);
   }
 
-  // PUT /users/:id - Update a user by ID
+  //GET ANNOTATIONS BY REPORT ID
+  @Get('/report/:id')
+  async findAnnotationsByReportId(@Param('id') id: number): Promise<Report_annotations[]> {
+    return await this.reportAnnotationsService.findAnnotationsByReportId(id);
+  }
+
+
+
+  // PUT  Update a user by ID
   @Put(':id')
   async update(@Param('id') id: number, @Body() data: Partial<Report_annotations>): Promise<Report_annotations> {
     return await this.reportAnnotationsService.update(id, data);
   }
 
-  // DELETE /users/:id - Delete a user by ID
+  // DELETE  Delete a user by ID
   @Delete(':id')
   async remove(@Param('id') id: number): Promise<void> {
     return await this.reportAnnotationsService.remove(id);

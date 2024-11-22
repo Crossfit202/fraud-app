@@ -7,36 +7,37 @@ export class AuditLogController {
   reportAnnotationsService: any;
   constructor(private readonly auditLogService: AuditLogService) { }
 
-  // POST /audit - Create a new audit log
+  // POST Create a new audit log
   @Post()
   async create(@Body() data: Partial<Audit_log>): Promise<Audit_log> {
     return await this.auditLogService.create(data);
   }
 
-  // GET /audit - Retrieve all audit logs
+  // GET ALL
   @Get()
   async findAll(): Promise<Audit_log[]> {
     return await this.auditLogService.findAll();
   }
 
-  // GET /audit/:id - Retrieve a single audit log by ID
+  // GET  by ID
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<Audit_log> {
     return await this.auditLogService.findOne(id);
   }
 
-  // PUT /audit/:id - Update a audit log by ID
+  // PUT 
   @Put(':id')
   async update(@Param('id') id: number, @Body() data: Partial<Audit_log>): Promise<Audit_log> {
     return await this.auditLogService.update(id, data);
   }
 
-  // DELETE /audit/:id - Delete a audit by ID
+  // DELETE 
   @Delete(':id')
   async remove(@Param('id') id: number): Promise<void> {
     return await this.auditLogService.remove(id);
   }
 
+  //GET ALL AUDIT LOGS MADE BY SPECIFIC USER
   @Get('/user/:id')
   async findAllByUserId(@Param('id') id: string): Promise<Audit_log[]> {
     const userId = parseInt(id, 10); // Convert string to number
