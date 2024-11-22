@@ -27,11 +27,12 @@ import { UsersService } from './users/users.service';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5433,
+      host: 'quokka-db-instance-1.cls8gcae0v9f.us-east-1.rds.amazonaws.com',
+      port: 5432,
       username: 'postgres',
       password: 'Cro$$57jon',
-      database: 'app',
+      database: 'postgres',
+      autoLoadEntities: true,
       entities: [Audit_log, Report_annotations, Report_status_history, Reports, Users],
       synchronize: true
     }),
