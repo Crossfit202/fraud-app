@@ -1,0 +1,29 @@
+version: '3.5'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nest-docker-app
+    environment:
+      - PORT=3000
+      - DB_HOST=quokka-db-instance-1.cls8gcae0v9f.us-east-1.rds.amazonaws.com
+      - DB_PORT=5432
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=Cro$$57jon
+      - DB_NAME=postgres
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./src:/app/src
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: nest-pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=joncross16@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=Cro$$57jon
+    ports:
+      - '5050:80'
