@@ -9,7 +9,7 @@ import { UsersModule } from 'src/users/users.module';
 @Module({
   imports: [
     TypeOrmModule.forFeature([Audit_log]),
-    forwardRef(() => ReportsModule), // Resolve circular dependency with forwardRef
+    forwardRef(() => ReportsModule),
   ],
   providers: [AuditLogService],
   controllers: [AuditLogController],

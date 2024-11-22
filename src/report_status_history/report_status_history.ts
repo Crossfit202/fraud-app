@@ -20,7 +20,7 @@ export class Report_status_history {
     @Column()
     changed_date: Date;
 
-    @ManyToOne(() => Reports, (report) => report.status_history, { onDelete: "CASCADE" }) // Many-to-One relationship
+    @ManyToOne(() => Reports, (report) => report.status_history, { onDelete: "CASCADE" })
     @JoinColumn({ name: "reportReportId" })
-    report: Reports; // Reference to the associated report
+    report: Reports;
 }

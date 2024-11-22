@@ -33,7 +33,7 @@ import { UsersService } from './users/users.service';
       password: 'Cro$$57jon',
       database: 'app',
       entities: [Audit_log, Report_annotations, Report_status_history, Reports, Users],
-      synchronize: true // Use only in development; set to false in production
+      synchronize: true
     }),
 
     AuditLogModule, ReportAnnotationsModule, ReportStatusHistoryModule, ReportsModule, UsersModule],

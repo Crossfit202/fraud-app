@@ -11,8 +11,8 @@ export class AuditLogService {
 
     // CREATE
     async create(data: Partial<Audit_log>): Promise<Audit_log> {
-        const newAnnotation = this.auditLogRepository.create(data); // Creates a new entity instance
-        return await this.auditLogRepository.save(newAnnotation); // Persists it to the database
+        const newAnnotation = this.auditLogRepository.create(data);
+        return await this.auditLogRepository.save(newAnnotation);
     }
 
     // READ ALL

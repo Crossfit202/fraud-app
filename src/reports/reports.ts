@@ -38,11 +38,11 @@ export class Reports {
     updated_at: Date;
 
     @ManyToOne(() => Users, (user) => user.reports)
-    @JoinColumn({ name: 'usersUserId' }) // Foreign key referencing `users`
+    @JoinColumn({ name: 'usersUserId' })
     users: Users;
 
     @OneToMany(() => Report_status_history, (statusHistory) => statusHistory.report, { cascade: true }) // One-to-Many relationship
-    status_history: Report_status_history[]; // List of status history entries
+    status_history: Report_status_history[];
 
     @OneToMany(() => Report_annotations, (report_annotations) => report_annotations.reports)
     report_annotations: Report_annotations[];

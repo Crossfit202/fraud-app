@@ -12,8 +12,8 @@ export class ReportAnnotationsService {
 
     // CREATE
     async create(data: Partial<Report_annotations>): Promise<Report_annotations> {
-        const newAnnotation = this.reportAnnotationsRepository.create(data); // Creates a new entity instance
-        return await this.reportAnnotationsRepository.save(newAnnotation); // Persists it to the database
+        const newAnnotation = this.reportAnnotationsRepository.create(data);
+        return await this.reportAnnotationsRepository.save(newAnnotation);
     }
 
     // READ ALL
@@ -33,9 +33,9 @@ export class ReportAnnotationsService {
     async findAnnotationsByReportId(reportId: number): Promise<Report_annotations[]> {
         return await this.reportAnnotationsRepository.find({
             where: {
-                reports: { report_id: reportId }, // Reference the primary key in the `Reports` entity
+                reports: { report_id: reportId },
             },
-            relations: ['reports'], // Ensure `reports` relation is loaded
+            relations: ['reports'],
         });
     }
 

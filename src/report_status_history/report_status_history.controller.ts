@@ -7,14 +7,13 @@ import { Report_status_history } from './report_status_history';
 export class ReportStatusHistoryController {
   constructor(private readonly ReportStatusHistoryService: ReportStatusHistoryService) { }
 
-  // POST /users - Create a new user
+  // POST  new user
   @Post()
   async create(@Body() data: Partial<Report_status_history>): Promise<Report_status_history> {
     return await this.ReportStatusHistoryService.create(data);
   }
 
   // GET 
-  // Controller
   @Get()
   async findAll(): Promise<Report_status_history[]> {
     return await this.ReportStatusHistoryService.findAll();
@@ -40,7 +39,7 @@ export class ReportStatusHistoryController {
   }
 
 
-  // GET /history/report/:report_id - Retrieve all report status history entries for a specific report ID
+  // GET  entries for a specific report ID
   @Get('report/:report_id')
   async getStatusHistoryByReportId(
     @Param('report_id') report_id: number,

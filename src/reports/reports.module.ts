@@ -3,19 +3,19 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Reports } from './reports';
 import { ReportsService } from './reports.service';
 import { ReportsController } from './reports.controller';
-import { AuditLogModule } from '../audit_log/audit_log.module'; // Adjust path if needed
-import { ReportAnnotationsModule } from '../report_annotations/report_annotations.module'; // Adjust path if needed
-import { UsersModule } from '../users/users.module'; // Adjust path if needed
-import { ReportStatusHistoryModule } from '../report_status_history/report_status_history.module'; // Adjust path if needed
+import { AuditLogModule } from '../audit_log/audit_log.module';
+import { ReportAnnotationsModule } from '../report_annotations/report_annotations.module';
+import { UsersModule } from '../users/users.module';
+import { ReportStatusHistoryModule } from '../report_status_history/report_status_history.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Reports]),
-    forwardRef(() => AuditLogModule), // Resolve circular dependency with forwardRef
-    forwardRef(() => UsersModule),   // Add forwardRef if UsersModule is causing the issue
+    forwardRef(() => AuditLogModule),
+    forwardRef(() => UsersModule),
   ],
   providers: [ReportsService],
   controllers: [ReportsController],
-  exports: [TypeOrmModule, ReportsService], // Export the ReportsService for use in other modules
+  exports: [TypeOrmModule, ReportsService],
 })
 export class ReportsModule { }

@@ -7,19 +7,19 @@ import { Reports } from 'src/reports/reports';
 export class ReportsController {
   constructor(private readonly ReportsService: ReportsService) { }
 
-  // POST /users - Create a new user
+  // POST a new user
   @Post()
   async create(@Body() data: Partial<Reports>): Promise<Reports> {
     return await this.ReportsService.create(data);
   }
 
-  // GET /users - Retrieve all users
+  // GET all users
   @Get()
   async findAll(): Promise<Reports[]> {
     return await this.ReportsService.findAll();
   }
 
-  // GET /users/:id - Retrieve a single user by ID
+  // GET user by ID
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<Reports> {
     return await this.ReportsService.findOne(id);
@@ -30,13 +30,13 @@ export class ReportsController {
     return await this.ReportsService.findOneByTicket(id);
   }
 
-  // PUT /users/:id - Update a user by ID
+  // PUT 
   @Put(':id')
   async update(@Param('id') id: number, @Body() data: Partial<Reports>): Promise<Reports> {
     return await this.ReportsService.update(id, data);
   }
 
-  // DELETE /users/:id - Delete a user by ID
+  // DELETE 
   @Delete(':id')
   async remove(@Param('id') id: number): Promise<void> {
     return await this.ReportsService.remove(id);

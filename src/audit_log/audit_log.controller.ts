@@ -40,7 +40,7 @@ export class AuditLogController {
   //GET ALL AUDIT LOGS MADE BY SPECIFIC USER
   @Get('/user/:id')
   async findAllByUserId(@Param('id') id: string): Promise<Audit_log[]> {
-    const userId = parseInt(id, 10); // Convert string to number
+    const userId = parseInt(id, 10);
     if (isNaN(userId)) {
       throw new BadRequestException('Invalid user ID');
     }
