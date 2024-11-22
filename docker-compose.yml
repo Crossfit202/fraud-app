@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: nest-docker-app
+    container_name: fraud-app
     environment:
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
@@ -16,12 +16,3 @@ services:
       - '3000:3000'
     volumes:
       - ./src:/app/src
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   restart: always
-  #   container_name: nest-pgadmin4
-  #   environment:
-  #     - PGADMIN_DEFAULT_EMAIL=joncross16@gmail.com
-  #     - PGADMIN_DEFAULT_PASSWORD=Cro$$57jon
-  #   ports:
-  #     - '5050:80'
